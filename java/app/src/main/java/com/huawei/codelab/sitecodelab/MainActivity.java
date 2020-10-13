@@ -32,6 +32,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -69,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         searchService.textSearch(textSearchRequest, new SearchResultListener<TextSearchResponse>() {
             @Override
             public void onSearchResult(TextSearchResponse textSearchResponse) {
+                List<Site> siteList;
+                if (textSearchResponse == null || textSearchResponse.getTotalCount() <= 0 || (siteList = textSearchResponse.getSites()) == null
+                        || siteList.size() <= 0) {
+                    resultTextView.setText("Result is Empty!");
+                    return;
+                }
 
                 StringBuilder response = new StringBuilder("\n");
                 response.append("success\n");
@@ -77,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 for (Site site : textSearchResponse.getSites()) {
                     addressDetail = site.getAddress();
                     response
-                        .append(String.format("[%s]  name: %s, formatAddress: %s, country: %s, countryCode: %s \r\n",
-                            "" + (count++), site.getName(), site.getFormatAddress(),
-                            (addressDetail == null ? "" : addressDetail.getCountry()),
-                            (addressDetail == null ? "" : addressDetail.getCountryCode())));
+                            .append(String.format("[%s]  name: %s, formatAddress: %s, country: %s, countryCode: %s \r\n",
+                                    "" + (count++), site.getName(), site.getFormatAddress(),
+                                    (addressDetail == null ? "" : addressDetail.getCountry()),
+                                    (addressDetail == null ? "" : addressDetail.getCountryCode())));
                 }
                 Log.d(TAG, "search result is : " + response);
                 resultTextView.setText(response.toString());

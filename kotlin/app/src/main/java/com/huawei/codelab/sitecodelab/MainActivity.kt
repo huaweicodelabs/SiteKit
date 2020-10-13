@@ -24,10 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.huawei.hms.site.api.SearchResultListener
 import com.huawei.hms.site.api.SearchService
 import com.huawei.hms.site.api.SearchServiceFactory
-import com.huawei.hms.site.api.model.AddressDetail
-import com.huawei.hms.site.api.model.SearchStatus
-import com.huawei.hms.site.api.model.TextSearchRequest
-import com.huawei.hms.site.api.model.TextSearchResponse
+import com.huawei.hms.site.api.model.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +52,12 @@ class MainActivity : AppCompatActivity() {
         searchService?.textSearch(
             textSearchRequest,
             object : SearchResultListener<TextSearchResponse> {
-                override fun onSearchResult(textSearchResponse: TextSearchResponse) {
+                override fun onSearchResult(textSearchResponse: TextSearchResponse?) {
+                    val siteList: List<Site>? = textSearchResponse?.getSites()
+                    if (textSearchResponse == null || textSearchResponse.getTotalCount() <= 0 || siteList.isNullOrEmpty()) {
+                        resultTextView.text = "Result is Empty!"
+                        return
+                    }
                     val response = StringBuilder("\nsuccess\n")
                     var addressDetail: AddressDetail?
 
@@ -69,9 +71,9 @@ class MainActivity : AppCompatActivity() {
                     resultTextView.text = response.toString()
                 }
 
-            override fun onSearchError(searchStatus: SearchStatus) {
-                Log.e(TAG, "onSearchError is: " + searchStatus.errorCode)
-            }
-        })
+                override fun onSearchError(searchStatus: SearchStatus) {
+                    Log.e(TAG, "onSearchError is: " + searchStatus.errorCode)
+                }
+            })
     }
 }
