@@ -36,12 +36,6 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/**
- * site activity entrance class
- *
- * @author David
- * @since 2019-12-12
- */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
