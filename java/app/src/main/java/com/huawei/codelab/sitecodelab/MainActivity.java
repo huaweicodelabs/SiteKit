@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSearchError(SearchStatus searchStatus) {
                 Log.e(TAG, "onSearchError is: " + searchStatus.getErrorCode());
+                resultTextView.setText("Error : " + searchStatus.getErrorCode() + " " + searchStatus.getErrorMessage());
             }
         });
     }

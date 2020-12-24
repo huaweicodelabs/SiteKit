@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSearchError(searchStatus: SearchStatus) {
                     Log.e(TAG, "onSearchError is: " + searchStatus.errorCode)
+                    resultTextView.text = "Error : ${searchStatus.getErrorCode()}  ${searchStatus.getErrorMessage()}"
                 }
             })
     }
