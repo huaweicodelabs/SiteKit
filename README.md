@@ -21,7 +21,7 @@ Register a [HUAWEI account](https://developer.huawei.com/consumer/en/).
 2. Create an app.
 Create an app and enable APIs.
 3. Build the demo.
-To build this demo, please first import the demo to Android Studio (3.X or later). Then download the agconnect-services.json file of the app from AppGallery Connect, and add the file to the app directory (\app) of the demo. For details, please refer to [Preparations for Integrating HUAWEI HMS Core](https://developer.huawei.com/consumer/en/codelab/HMSPreparation/index.html)
+To build this demo, please first import the demo to Android Studio (3.X or later). Then download the agconnect-services.json file of the app from AppGallery Connect, and add the file to the app directory (\app) of the demo. For details, please refer to [Preparations for Integrating HUAWEI HMS Core](https://developer.huawei.com/consumer/en/codelab/HMSPreparation/index.html). In addition, change the value of the apiKey variable ("API key") of the onCreate function in MainActivity.java or MainActivity.kt to the value of apiKey obtained from agconnect-services.json.
 
 ## Installation
 
