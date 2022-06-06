@@ -51,7 +51,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Please replace "API key" with your API KEY
-        searchService = SearchServiceFactory.create(this, "API key");
+        String apiKey = "API key";
+        String encodedApiKey = "";
+        try {
+            encodedApiKey = URLEncoder.encode(apiKey, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            Log.e(TAG, "encode apikey error");
+        }
+        searchService = SearchServiceFactory.create(this, encodedApiKey);
 
         queryInput = findViewById(R.id.edit_text_text_search_query);
         resultTextView = findViewById(R.id.response_text_search);
