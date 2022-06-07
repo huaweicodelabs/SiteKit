@@ -25,6 +25,8 @@ import com.huawei.hms.site.api.SearchResultListener
 import com.huawei.hms.site.api.SearchService
 import com.huawei.hms.site.api.SearchServiceFactory
 import com.huawei.hms.site.api.model.*
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
 
 
 class MainActivity : AppCompatActivity() {
